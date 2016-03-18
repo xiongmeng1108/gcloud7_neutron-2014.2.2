@@ -1,0 +1,164 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>OpenVSwitch L2 Agent &mdash; Neutron 2014.2.3 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/tweaks.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2014.2.3',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Neutron 2014.2.3 documentation" href="../index.html" />
+    <link rel="up" title="L2 Agent Networking" href="l2_agents.html" />
+    <link rel="next" title="L2 Networking with Linux Bridge" href="linuxbridge_agent.html" />
+    <link rel="prev" title="L2 Agent Networking" href="l2_agents.html" /> 
+  </head>
+  <body>
+  <div id="header">
+    <h1 id="logo"><a href="http://www.openstack.org/">OpenStack</a></h1>
+    <ul id="navigation">
+      
+      <li><a href="http://www.openstack.org/" title="Go to the Home page" class="link">Home</a></li>
+      <li><a href="http://www.openstack.org/projects/" title="Go to the OpenStack Projects page">Projects</a></li>
+      <li><a href="http://www.openstack.org/user-stories/" title="Go to the User Stories page" class="link">User Stories</a></li>
+      <li><a href="http://www.openstack.org/community/" title="Go to the Community page" class="link">Community</a></li>
+      <li><a href="http://www.openstack.org/blog/" title="Go to the OpenStack Blog">Blog</a></li>
+      <li><a href="http://wiki.openstack.org/" title="Go to the OpenStack Wiki">Wiki</a></li>
+      <li><a href="http://docs.openstack.org/" title="Go to OpenStack Documentation" class="current">Documentation</a></li>
+      
+    </ul>
+  </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="openvswitch-l2-agent">
+<h1>OpenVSwitch L2 Agent<a class="headerlink" href="#openvswitch-l2-agent" title="Permalink to this headline">¶</a></h1>
+<p>This Agent uses the <a class="reference external" href="http://openvswitch.org">OpenVSwitch</a> virtual switch to create L2
+connectivity for instances, along with bridges created in conjunction
+with OpenStack Nova for filtering.</p>
+<p>ovs-neutron-agent can be configured to use two different networking technologies to create tenant isolation, either GRE tunnels or VLAN tags.</p>
+<div class="section" id="vlan-tags">
+<h2>VLAN Tags<a class="headerlink" href="#vlan-tags" title="Permalink to this headline">¶</a></h2>
+<img alt="http://docs.openstack.org/admin-guide-cloud/content/figures/10/a/common/figures/under-the-hood-scenario-1-ovs-compute.png" src="http://docs.openstack.org/admin-guide-cloud/content/figures/10/a/common/figures/under-the-hood-scenario-1-ovs-compute.png" />
+</div>
+<div class="section" id="gre-tunnels">
+<h2>GRE Tunnels<a class="headerlink" href="#gre-tunnels" title="Permalink to this headline">¶</a></h2>
+<p>GRE Tunneling is documented in depth in the <a class="reference external" href="http://openstack.redhat.com/Networking_in_too_much_detail">Networking in too much
+detail</a>
+by RedHat.</p>
+</div>
+<div class="section" id="further-reading">
+<h2>Further Reading<a class="headerlink" href="#further-reading" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="http://techbackground.blogspot.com/2013/07/the-open-vswitch-plugin-with-vlans.html">Darragh O&#8217;Reilly - The Open vSwitch plugin with VLANs</a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+<div class="sphinxsidebar">
+    <div class="sphinxsidebarwrapper">
+            <h3><a href="../index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference internal" href="#">OpenVSwitch L2 Agent</a><ul>
+<li><a class="reference internal" href="#vlan-tags">VLAN Tags</a></li>
+<li><a class="reference internal" href="#gre-tunnels">GRE Tunnels</a></li>
+<li><a class="reference internal" href="#further-reading">Further Reading</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="l2_agents.html"
+                                  title="previous chapter">L2 Agent Networking</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="linuxbridge_agent.html"
+                                  title="next chapter">L2 Networking with Linux Bridge</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../_sources/devref/openvswitch_agent.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+    </div>
+</div>
+
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="linuxbridge_agent.html" title="L2 Networking with Linux Bridge"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="l2_agents.html" title="L2 Agent Networking"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Neutron 2014.2.3 documentation</a> &raquo;</li>
+          <li><a href="index.html" >Developer Guide</a> &raquo;</li>
+          <li><a href="l2_agents.html" accesskey="U">L2 Agent Networking</a> &raquo;</li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+        &copy; Copyright 2011-present, OpenStack Foundation..
+      Last updated on Mar 10, 2016.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+//Tracking docs.openstack.org/developer/<projectname> only
+//The URL is built from the project variable in conf.py
+var pageTracker = _gat._getTracker("UA-17511903-1");
+pageTracker._setCookiePath("/developer/Neutron");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+  </body>
+</html>

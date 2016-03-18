@@ -1,0 +1,333 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Setting Up a Development Environment &mdash; Neutron 2014.2.3 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/tweaks.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2014.2.3',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Neutron 2014.2.3 documentation" href="../index.html" />
+    <link rel="up" title="Developer Guide" href="index.html" />
+    <link rel="next" title="Neutron WSGI/HTTP API layer" href="api_layer.html" />
+    <link rel="prev" title="Developer Guide" href="index.html" /> 
+  </head>
+  <body>
+  <div id="header">
+    <h1 id="logo"><a href="http://www.openstack.org/">OpenStack</a></h1>
+    <ul id="navigation">
+      
+      <li><a href="http://www.openstack.org/" title="Go to the Home page" class="link">Home</a></li>
+      <li><a href="http://www.openstack.org/projects/" title="Go to the OpenStack Projects page">Projects</a></li>
+      <li><a href="http://www.openstack.org/user-stories/" title="Go to the User Stories page" class="link">User Stories</a></li>
+      <li><a href="http://www.openstack.org/community/" title="Go to the Community page" class="link">Community</a></li>
+      <li><a href="http://www.openstack.org/blog/" title="Go to the OpenStack Blog">Blog</a></li>
+      <li><a href="http://wiki.openstack.org/" title="Go to the OpenStack Wiki">Wiki</a></li>
+      <li><a href="http://docs.openstack.org/" title="Go to OpenStack Documentation" class="current">Documentation</a></li>
+      
+    </ul>
+  </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="setting-up-a-development-environment">
+<h1>Setting Up a Development Environment<a class="headerlink" href="#setting-up-a-development-environment" title="Permalink to this headline">¶</a></h1>
+<p>This page describes how to setup a working Python development
+environment that can be used in developing Neutron on Ubuntu, Fedora or
+Mac OS X. These instructions assume you&#8217;re already familiar with
+Git and Gerrit, which is a code repository mirror and code review toolset
+, however if you aren&#8217;t please see <a class="reference external" href="http://git-scm.com/book/en/Getting-Started">this Git tutorial</a> for an introduction
+to using Git and <a class="reference external" href="https://wiki.openstack.org/wiki/Gerrit_Workflow">this wiki page</a> for a tutorial on using Gerrit and Git for
+code contribution to Openstack projects.</p>
+<p>Following these instructions will allow you to run the Neutron unit
+tests. If you want to be able to run Neutron in a full OpenStack environment,
+you can use the excellent <a class="reference external" href="https://github.com/openstack-dev/devstack">DevStack</a> project to do so. There is a wiki page
+that describes <a class="reference external" href="https://wiki.openstack.org/wiki/NeutronDevstack">setting up Neutron using DevStack</a>.</p>
+<div class="section" id="getting-the-code">
+<h2>Getting the code<a class="headerlink" href="#getting-the-code" title="Permalink to this headline">¶</a></h2>
+<p>Grab the code from GitHub:</p>
+<div class="highlight-python"><pre>git clone git://git.openstack.org/openstack/neutron.git
+cd neutron</pre>
+</div>
+</div>
+</div>
+<div class="section" id="testing-neutron">
+<h1>Testing Neutron<a class="headerlink" href="#testing-neutron" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>The unit tests (neutron/test/unit/) are meant to cover as much code as
+possible and should be executed without the service running. They are
+designed to test the various pieces of the neutron tree to make sure
+any new changes don&#8217;t break existing functionality.</p>
+<p>The functional tests (neutron/tests/functional/) are intended to
+validate actual system interaction.  Mocks should be used sparingly,
+if at all.  Care should be taken to ensure that existing system
+resources are not modified and that resources created in tests are
+properly cleaned up.</p>
+</div>
+<div class="section" id="development-process">
+<h2>Development process<a class="headerlink" href="#development-process" title="Permalink to this headline">¶</a></h2>
+<p>It is expected that any new changes that are proposed for merge
+come with tests for that feature or code area. Ideally any bugs
+fixes that are submitted also have tests to prove that they stay
+fixed!  In addition, before proposing for merge, all of the
+current tests should be passing.</p>
+<div class="section" id="virtual-environments">
+<h3>Virtual environments<a class="headerlink" href="#virtual-environments" title="Permalink to this headline">¶</a></h3>
+<p>Testing OpenStack projects, including Neutron, is made easier with <a class="reference external" href="https://github.com/openstack-dev/devstack">DevStack</a>.</p>
+<p>Create a machine (such as a VM or Vagrant box) running a distribution supported
+by DevStack and install DevStack there. For example, there is a Vagrant script
+for DevStack at <a class="reference external" href="https://github.com/bcwaldon/vagrant_devstack">https://github.com/bcwaldon/vagrant_devstack</a>.</p>
+<blockquote>
+<div><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you prefer not to use DevStack, you can still check out source code on your local
+machine and develop from there.</p>
+</div>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="running-unit-tests">
+<h2>Running unit tests<a class="headerlink" href="#running-unit-tests" title="Permalink to this headline">¶</a></h2>
+<p>There are three mechanisms for running tests: run_tests.sh, tox,
+and nose. Before submitting a patch for review you should always
+ensure all test pass; a tox run is triggered by the jenkins gate
+executed on gerrit for each patch pushed for review.</p>
+<p>With these mechanisms you can either run the tests in the standard
+environment or create a virtual environment to run them in.</p>
+<p>By default after running all of the tests, any pep8 errors
+found in the tree will be reported.</p>
+<div class="section" id="with-run-tests-sh">
+<h3>With <cite>run_tests.sh</cite><a class="headerlink" href="#with-run-tests-sh" title="Permalink to this headline">¶</a></h3>
+<p>You can use the <cite>run_tests.sh</cite> script in the root source directory to execute
+tests in a virtualenv:</p>
+<div class="highlight-python"><pre>./run_tests -V</pre>
+</div>
+</div>
+<div class="section" id="with-nose">
+<h3>With <cite>nose</cite><a class="headerlink" href="#with-nose" title="Permalink to this headline">¶</a></h3>
+<p>You can use <a class="reference external" href="https://nose.readthedocs.org/en/latest/index.html">nose</a> to run individual tests, as well as use for debugging
+portions of your code:</p>
+<div class="highlight-python"><pre>source .venv/bin/activate
+pip install nose
+nosetests</pre>
+</div>
+<p>There are disadvantages to running Nose - the tests are run sequentially, so
+race condition bugs will not be triggered, and the full test suite will
+take significantly longer than tox &amp; testr. The upside is that testr has
+some rough edges when it comes to diagnosing errors and failures, and there is
+no easy way to set a breakpoint in the Neutron code, and enter an
+interactive debugging session while using testr.</p>
+</div>
+<div class="section" id="with-tox">
+<h3>With <cite>tox</cite><a class="headerlink" href="#with-tox" title="Permalink to this headline">¶</a></h3>
+<p>Neutron, like other OpenStack projects, uses <a class="reference external" href="http://tox.readthedocs.org/en/latest/">tox</a> for managing the virtual
+environments for running test cases. It uses <a class="reference external" href="https://wiki.openstack.org/wiki/Testr">Testr</a> for managing the running
+of the test cases.</p>
+<p>Tox handles the creation of a series of <a class="reference external" href="https://pypi.python.org/pypi/virtualenv">virtualenvs</a> that target specific
+versions of Python (2.6, 2.7, 3.3, etc).</p>
+<p>Testr handles the parallel execution of series of test cases as well as
+the tracking of long-running tests and other things.</p>
+<p>Running unit tests is as easy as executing this in the root directory of the
+Neutron source code:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">tox</span>
+</pre></div>
+</div>
+<p>To run functional tests that do not require sudo privileges or
+specific-system dependencies:</p>
+<div class="highlight-python"><pre>tox -e functional</pre>
+</div>
+<p>To run all the functional tests in an environment that has been configured
+by devstack to support sudo and system-specific dependencies:</p>
+<div class="highlight-python"><pre>tox -e dsvm-functional</pre>
+</div>
+<p>For more information on the standard Tox-based test infrastructure used by
+OpenStack and how to do some common test/debugging procedures with Testr,
+see this wiki page:</p>
+<blockquote>
+<div><a class="reference external" href="https://wiki.openstack.org/wiki/Testr">https://wiki.openstack.org/wiki/Testr</a></div></blockquote>
+</div>
+<div class="section" id="running-individual-tests">
+<h3>Running individual tests<a class="headerlink" href="#running-individual-tests" title="Permalink to this headline">¶</a></h3>
+<p>For running individual test modules or cases, you just need to pass
+the dot-separated path to the module you want as an argument to it.</p>
+<p>For executing a specific test case, specify the name of the test case
+class separating it from the module path with a colon.</p>
+<p>For example, the following would run only the JSONV2TestCase tests from
+neutron/tests/unit/test_api_v2.py:</p>
+<div class="highlight-python"><pre>$ ./run_tests.sh neutron.tests.unit.test_api_v2.JSONV2TestCase</pre>
+</div>
+<p>or:</p>
+<div class="highlight-python"><pre>$ tox -e py27 neutron.tests.unit.test_api_v2.JSONV2TestCase</pre>
+</div>
+</div>
+<div class="section" id="adding-more-tests">
+<h3>Adding more tests<a class="headerlink" href="#adding-more-tests" title="Permalink to this headline">¶</a></h3>
+<p>Neutron has a fast growing code base and there is plenty of areas that
+need to be covered by unit and functional tests.</p>
+<p>To get a grasp of the areas where tests are needed, you can check
+current coverage by running:</p>
+<div class="highlight-python"><pre>$ ./run_tests.sh -c</pre>
+</div>
+</div>
+</div>
+<div class="section" id="debugging">
+<h2>Debugging<a class="headerlink" href="#debugging" title="Permalink to this headline">¶</a></h2>
+<p>By default, calls to pdb.set_trace() will be ignored when tests
+are run.  For pdb statements to work, invoke run_tests as follows:</p>
+<div class="highlight-python"><pre>$ ./run_tests.sh -d [test module path]</pre>
+</div>
+<p>It&#8217;s possible to debug tests in a tox environment:</p>
+<div class="highlight-python"><pre>$ tox -e venv -- python -m testtools.run [test module path]</pre>
+</div>
+<p>Tox-created virtual environments (venv&#8217;s) can also be activated
+after a tox run and reused for debugging:</p>
+<div class="highlight-python"><pre>$ tox -e venv
+$ . .tox/venv/bin/activate
+$ python -m testtools.run [test module path]</pre>
+</div>
+<p>Tox packages and installs the neutron source tree in a given venv
+on every invocation, but if modifications need to be made between
+invocation (e.g. adding more pdb statements), it is recommended
+that the source tree be installed in the venv in editable mode:</p>
+<div class="highlight-python"><pre># run this only after activating the venv
+$ pip install --editable .</pre>
+</div>
+<p>Editable mode ensures that changes made to the source tree are
+automatically reflected in the venv, and that such changes are not
+overwritten during the next tox run.</p>
+<div class="section" id="post-mortem-debugging">
+<h3>Post-mortem debugging<a class="headerlink" href="#post-mortem-debugging" title="Permalink to this headline">¶</a></h3>
+<p>Setting OS_POST_MORTEM_DEBUG=1 in the shell environment will ensure
+that pdb.post_mortem() will be invoked on test failure:</p>
+<div class="highlight-python"><pre>$ OS_POST_MORTEM_DEBUG=1 ./run_tests.sh -d [test module path]</pre>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+<div class="sphinxsidebar">
+    <div class="sphinxsidebarwrapper">
+            <h3><a href="../index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference internal" href="#">Setting Up a Development Environment</a><ul>
+<li><a class="reference internal" href="#getting-the-code">Getting the code</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#testing-neutron">Testing Neutron</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#development-process">Development process</a><ul>
+<li><a class="reference internal" href="#virtual-environments">Virtual environments</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#running-unit-tests">Running unit tests</a><ul>
+<li><a class="reference internal" href="#with-run-tests-sh">With <cite>run_tests.sh</cite></a></li>
+<li><a class="reference internal" href="#with-nose">With <cite>nose</cite></a></li>
+<li><a class="reference internal" href="#with-tox">With <cite>tox</cite></a></li>
+<li><a class="reference internal" href="#running-individual-tests">Running individual tests</a></li>
+<li><a class="reference internal" href="#adding-more-tests">Adding more tests</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#debugging">Debugging</a><ul>
+<li><a class="reference internal" href="#post-mortem-debugging">Post-mortem debugging</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="index.html"
+                                  title="previous chapter">Developer Guide</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="api_layer.html"
+                                  title="next chapter">Neutron WSGI/HTTP API layer</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../_sources/devref/development.environment.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+    </div>
+</div>
+
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="api_layer.html" title="Neutron WSGI/HTTP API layer"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Developer Guide"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Neutron 2014.2.3 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Developer Guide</a> &raquo;</li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+        &copy; Copyright 2011-present, OpenStack Foundation..
+      Last updated on Mar 10, 2016.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+//Tracking docs.openstack.org/developer/<projectname> only
+//The URL is built from the project variable in conf.py
+var pageTracker = _gat._getTracker("UA-17511903-1");
+pageTracker._setCookiePath("/developer/Neutron");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+  </body>
+</html>

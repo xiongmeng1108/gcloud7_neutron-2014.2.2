@@ -1,0 +1,259 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>neutron-server &mdash; Neutron 2014.2.3 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/tweaks.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2014.2.3',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Neutron 2014.2.3 documentation" href="../index.html" />
+    <link rel="prev" title="VPN as a Service" href="../devref/vpnaas.html" /> 
+  </head>
+  <body>
+  <div id="header">
+    <h1 id="logo"><a href="http://www.openstack.org/">OpenStack</a></h1>
+    <ul id="navigation">
+      
+      <li><a href="http://www.openstack.org/" title="Go to the Home page" class="link">Home</a></li>
+      <li><a href="http://www.openstack.org/projects/" title="Go to the OpenStack Projects page">Projects</a></li>
+      <li><a href="http://www.openstack.org/user-stories/" title="Go to the User Stories page" class="link">User Stories</a></li>
+      <li><a href="http://www.openstack.org/community/" title="Go to the Community page" class="link">Community</a></li>
+      <li><a href="http://www.openstack.org/blog/" title="Go to the OpenStack Blog">Blog</a></li>
+      <li><a href="http://wiki.openstack.org/" title="Go to the OpenStack Wiki">Wiki</a></li>
+      <li><a href="http://docs.openstack.org/" title="Go to OpenStack Documentation" class="current">Documentation</a></li>
+      
+    </ul>
+  </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="neutron-server">
+<h1>neutron-server<a class="headerlink" href="#neutron-server" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>Neutron Server<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body"><a class="reference external" href="mailto:openstack&#37;&#52;&#48;lists&#46;openstack&#46;org">openstack<span>&#64;</span>lists<span>&#46;</span>openstack<span>&#46;</span>org</a></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">2012-04-05</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Copyright:</th><td class="field-body">OpenStack Foundation</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Version:</th><td class="field-body">2012.1</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Manual section:</th><td class="field-body">1</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Manual group:</th><td class="field-body">cloud computing</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="synopsis">
+<h3>SYNOPSIS<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div>neutron-server [options]</div></blockquote>
+</div>
+<div class="section" id="description">
+<h3>DESCRIPTION<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h3>
+<p>neutron-server provides a webserver that exposes the Neutron API, and
+passes all webservice calls to the Neutron plugin for processing.</p>
+</div>
+<div class="section" id="options">
+<h3>OPTIONS<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><table class="docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group">
+<kbd><span class="option">--version</span></kbd></td>
+<td>show program&#8217;s version number and exit</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></td>
+<td>show this help message and exit</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-v</span>, <span class="option">--verbose</span></kbd></td>
+<td>Print more verbose output</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-d</span>, <span class="option">--debug</span></kbd></td>
+<td>Print debugging output</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">--config-file=<var>PATH</var></span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>Path to the config file to use, for example,
+/etc/neutron/neutron.conf. When not specified
+(the default), we generally look at the first argument
+specified to be a config file, and if that is also
+missing, we search standard directories for a config
+file. (/etc/neutron/,
+/usr/lib/pythonX/site-packages/neutron/)</td></tr>
+</tbody>
+</table>
+<dl class="docutils">
+<dt>Logging Options:</dt>
+<dd><p class="first">The following configuration options are specific to logging
+functionality for this program.</p>
+<table class="last docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">--log-config=<var>PATH</var></span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>If this option is specified, the logging configuration
+file specified is used and overrides any other logging
+options specified. Please see the Python logging
+module documentation for details on logging
+configuration files.</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">--log-date-format=<var>FORMAT</var></span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>Format string for %(asctime)s in log records. Default:
+%Y-%m-%d %H:%M:%S</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--use-syslog</span></kbd></td>
+<td>Output logs to syslog.</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">--log-file=<var>PATH</var></span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>(Optional) Name of log file to output to. If not set,
+logging will go to stdout.</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">--log-dir=<var>LOG_DIR</var></span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>(Optional) The directory to keep log files in (will be
+prepended to &#8211;logfile)</td></tr>
+</tbody>
+</table>
+</dd>
+</dl>
+</div></blockquote>
+</div>
+<div class="section" id="files">
+<h3>FILES<a class="headerlink" href="#files" title="Permalink to this headline">¶</a></h3>
+<p>plugins.ini file contains the plugin information
+neutron.conf file contains configuration information in the form of python-gflags.</p>
+</div>
+<div class="section" id="see-also">
+<h3>SEE ALSO<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><a class="reference external" href="http://neutron.openstack.org">OpenStack Neutron</a></li>
+</ul>
+</div>
+<div class="section" id="bugs">
+<h3>BUGS<a class="headerlink" href="#bugs" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Neutron is sourced in Launchpad so you can view current bugs at <a class="reference external" href="https://bugs.launchpad.net/neutron">OpenStack Bugs</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+<div class="sphinxsidebar">
+    <div class="sphinxsidebarwrapper">
+            <h3><a href="../index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference internal" href="#">neutron-server</a><ul>
+<li><a class="reference internal" href="#id1">Neutron Server</a><ul>
+<li><a class="reference internal" href="#synopsis">SYNOPSIS</a></li>
+<li><a class="reference internal" href="#description">DESCRIPTION</a></li>
+<li><a class="reference internal" href="#options">OPTIONS</a></li>
+<li><a class="reference internal" href="#files">FILES</a></li>
+<li><a class="reference internal" href="#see-also">SEE ALSO</a></li>
+<li><a class="reference internal" href="#bugs">BUGS</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="../devref/vpnaas.html"
+                                  title="previous chapter">VPN as a Service</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../_sources/man/neutron-server.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+    </div>
+</div>
+
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../devref/vpnaas.html" title="VPN as a Service"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Neutron 2014.2.3 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+        &copy; Copyright 2011-present, OpenStack Foundation..
+      Last updated on Mar 10, 2016.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+//Tracking docs.openstack.org/developer/<projectname> only
+//The URL is built from the project variable in conf.py
+var pageTracker = _gat._getTracker("UA-17511903-1");
+pageTracker._setCookiePath("/developer/Neutron");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+  </body>
+</html>
